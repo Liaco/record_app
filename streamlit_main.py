@@ -256,7 +256,7 @@ if __name__ == '__main__':
         message ,result= RecordData(prompt).run()
         with st.chat_message("Liaco"):
             st.write(message)
-            with tab2:
-                st.dataframe(pd.DataFrame(result[0],index=index_list))
-            with tab3:
-                st.dataframe(pd.DataFrame(result[1],index=index_list))          
+        with tab2:
+            st.dataframe(pd.DataFrame(result[0],index=index_list))
+        with tab3:
+            st.dataframe(pd.DataFrame(result[1],index=index_list))          
