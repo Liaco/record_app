@@ -246,7 +246,7 @@ class color:  #红蓝绿波
 
 if __name__ == '__main__':
     index_list = ["兔", "虎", "牛", "鼠", "猪", "狗", "鸡", "猴", "羊", "马", "蛇", "龙"]*4+['兔']
-    tab2, tab3 = st.tabs([ "Aomen","Hongkong"])
+    tab2, tab3 = st.tabs([ "Macao","Hongkong"])
     with st.sidebar:
         st.markdown('''
         # 测试页面
