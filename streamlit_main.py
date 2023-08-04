@@ -1,6 +1,6 @@
 import re
+import time
 import streamlit as st
-import pandas as pd
 
 class RecordData:
     def __init__(self,text):
@@ -175,7 +175,7 @@ class RecordData:
                 results.append(f'录入文本：  {self.text}\n录入表格：  {self.sheet_name}\n录入状态：  {state}\n录入位置：  第{",".join(map(str, rows))}行\n录入金额：  ￥ {amount} 元\n')
                 return  "\n".join(results)
                 
-    def run(self):                         #运行程序  
+    def run(self):                       #运行程序  
         self.type_select()
         self.sheet_select()
         text = self.type_input()
@@ -243,23 +243,35 @@ class color:  #红蓝绿波
         rows = self.add()
         return self.sub(rows)
 
+def chat(msg_in):
+    return {"role": "assistant", "content":f"{str(msg_in)}"}
 
+col_1 = [["兔"], ["虎"], ["牛"], ["鼠"], ["猪"], ["狗"], ["鸡"], ["猴"], ["羊"], ["马"], ["蛇"], ["龙"]] * 4 + [['兔']]
 if __name__ == '__main__':
-    index_list = ["兔", "虎", "牛", "鼠", "猪", "狗", "鸡", "猴", "羊", "马", "蛇", "龙"]*4+['兔']
-    tab2, tab3 = st.tabs([ "Macau","Hongkong"])
     with st.sidebar:
-        st.markdown('''
-        # 测试页面
-                ''')
-    prompt = st.chat_input("Enter here !")
-    if prompt:
-        if "result" not in st.session_state:
-            st.session_state.result = []
-        message ,result_x = RecordData(prompt).run()
-        session_state.result = session_state.result + result_x
-        with st.chat_message("Liaco"):
-            st.write(message)
-        with tab2:
-            st.dataframe(pd.DataFrame(result[0],index=index_list))
-        with tab3:
-            st.dataframe(pd.DataFrame(result[1],index=index_list))          
+       pass
+
+    st.title("💬 Record")
+    if "messages" not in st.session_state:
+        st.session_state.messages = [{"role": "assistant", "content": "How can I help you?"}]
+    if "result_a" not in st.session_state:
+        st.session_state.result_a = [["兔"], ["虎"], ["牛"], ["鼠"], ["猪"], ["狗"], ["鸡"], ["猴"], ["羊"], ["马"], ["蛇"], ["龙"]] * 4 + [['兔']]
+    if "result_b" not in st.session_state:
+        st.session_state.result_b = [[i+1] for i in range(49)]
+
+    for msg in st.session_state.messages:
+        st.chat_message(msg["role"]).write(msg["content"])
+
+    if prompt := st.chat_input():
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        lines = prompt.splitlines()
+        for line in lines:
+            st.chat_message("user").write(line)
+            msg_get,result_get = RecordData(line).run()
+            st.session_state.result_a = [item_y + item_x for item_x, item_y in zip(result_get[0],st.session_state.result_a)]
+            st.session_state.result_b = [item_y + item_x for item_x, item_y in zip(result_get[1],st.session_state.result_b)]
+            msg = chat(msg_get)
+            print(msg["content"])
+            st.session_state.messages.append(msg)
+            st.chat_message("assistant").write(str(msg["content"]))
+            time.sleep(0.5)
