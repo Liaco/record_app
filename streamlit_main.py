@@ -256,7 +256,7 @@ if __name__ == '__main__':
     if "result_a" not in st.session_state:
         st.session_state.result_a = [["兔"], ["虎"], ["牛"], ["鼠"], ["猪"], ["狗"], ["鸡"], ["猴"], ["羊"], ["马"], ["蛇"], ["龙"]] * 4 + [['兔']]
     if "result_b" not in st.session_state:
-        st.session_state.result_b = [[i+1] for i in range(49)]
+        st.session_state.result_b = [["兔"], ["虎"], ["牛"], ["鼠"], ["猪"], ["狗"], ["鸡"], ["猴"], ["羊"], ["马"], ["蛇"], ["龙"]] * 4 + [['兔']]
 
     for msg in st.session_state.messages:
         st.chat_message(msg["role"]).write(msg["content"])
