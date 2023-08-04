@@ -253,7 +253,10 @@ if __name__ == '__main__':
                 ''')
     prompt = st.chat_input("Enter here !")
     if prompt:
-        message ,result= RecordData(prompt).run()
+        if "result" not in st.session_state:
+            st.session_state.result = []
+        message ,result_x = RecordData(prompt).run()
+        session_state.result = session_state.result + result_x
         with st.chat_message("Liaco"):
             st.write(message)
         with tab2:
