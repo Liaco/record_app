@@ -246,7 +246,6 @@ class color:  #红蓝绿波
 def chat(msg_in):
     return {"role": "assistant", "content":f"{str(msg_in)}"}
 
-col_1 = [["兔"], ["虎"], ["牛"], ["鼠"], ["猪"], ["狗"], ["鸡"], ["猴"], ["羊"], ["马"], ["蛇"], ["龙"]] * 4 + [['兔']]
 if __name__ == '__main__':
     with st.sidebar:
        pass
