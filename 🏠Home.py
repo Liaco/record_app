@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
     
     if "msg_today" not in st.session_state:
-        st.session_state.msg_today = get_today()
+        st.session_state.msg_today = "Good Night !"
     if "messages" not in st.session_state:
         st.session_state.messages = [{"role": "assistant", "content": "How can I help you?"}]
     if "result_a" not in st.session_state:
