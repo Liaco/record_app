@@ -1,10 +1,17 @@
 import streamlit as st
 import pandas as pd
 
+
+st.set_page_config(
+page_title="Record",
+page_icon="🤖",
+layout="wide",
+initial_sidebar_state="expanded",
+)
 with st.sidebar:
     pass
 
-st.title("📑 Result")
+st.title("🖥️Tables")
 if "result_a" not in st.session_state:
     st.session_state.result_a =  [["兔"], ["虎"], ["牛"], ["鼠"], ["猪"], ["狗"], ["鸡"], ["猴"], ["羊"], ["马"], ["蛇"], ["龙"]] * 4 + [['兔']]
 if "result_b" not in st.session_state:
