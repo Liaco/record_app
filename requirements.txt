@@ -1,3 +1,4 @@
 mpmath==1.3.0
 numpy==1.25.2
 pandas==2.0.3
+streamlit-state==0.1.0
