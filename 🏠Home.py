@@ -34,7 +34,8 @@ if __name__ == '__main__':
 
     
     if "msg_today" not in st.session_state:
-        st.session_state.msg_today = "Good Night !"
+        # st.session_state.msg_today = get_today()
+        st.session_state.msg_today = 'Good Night!'
     if "messages" not in st.session_state:
         st.session_state.messages = [{"role": "assistant", "content": "How can I help you?"}]
     if "result_a" not in st.session_state:
@@ -56,7 +57,7 @@ if __name__ == '__main__':
             st.session_state.result_a = [item_y + item_x for item_x, item_y in zip(result_get[0],st.session_state.result_a)]
             st.session_state.result_b = [item_y + item_x for item_x, item_y in zip(result_get[1],st.session_state.result_b)]
             msg = chat(msg_get)
-            print(msg["content"])
+            # print(msg["content"])
             st.session_state.messages.append(msg)
             st.chat_message("assistant").text(str(msg["content"]))
             time.sleep(0.5)
